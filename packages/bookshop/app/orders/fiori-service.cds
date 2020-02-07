@@ -27,7 +27,7 @@ annotate AdminService.Orders with @(
 		//
 		//	Lists of Orders
 		//
-		SelectionFields: [ createdAt, createdBy ],
+		SelectionFields: [ createdAt, createdBy, netPayable ],
 		LineItem: [
 			{Value: createdBy, Label:'Customer'},
 			{Value: createdAt, Label:'Date'}
@@ -42,7 +42,8 @@ annotate AdminService.Orders with @(
 				Label: 'Order number ', //A label is possible but it is not considered on the ObjectPage yet
 				Value: OrderNo
 			},
-			Description: {Value: createdBy}
+			Description: {Value: createdBy},
+			NetPayable: {Value: netPayable}
 		},
 		Identification: [ //Is the main field group
 			{Value: createdBy, Label:'Customer'},
@@ -59,7 +60,8 @@ annotate AdminService.Orders with @(
 		],
 		FieldGroup#Details: {
 			Data: [
-				{Value: currency_code, Label:'Currency'}
+				{Value: currency_code, Label:'Currency'},
+				{Value: netPayable, Label:'Net Payable'},
 			]
 		},
 		FieldGroup#Created: {
@@ -74,6 +76,12 @@ annotate AdminService.Orders with @(
 				{Value: modifiedAt},
 			]
 		},
+		FieldGroup#Total: {
+			Data: [
+				{Value: netPayable}
+			]
+		},
+
 	},
 ) {
 	createdAt @UI.HiddenFilter:false;

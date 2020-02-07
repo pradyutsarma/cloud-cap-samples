@@ -22,14 +22,19 @@ entity Authors : managed {
 }
 
 entity Orders : cuid, managed {
-  OrderNo  : String @title:'Order Number'; //> readable key
-  Items    : Composition of many OrderItems on Items.parent = $self;
-  total    : Decimal(9,2) @readonly;
-  currency : Currency;
+  OrderNo     : String @title:'Order Number'; //> readable key
+  Items       : Composition of many OrderItems on Items.parent = $self;
+  total       : Decimal(9,2) @readonly;
+  netPayable  : Decimal(9,2);
+  currency    : Currency;
 }
 entity OrderItems : cuid {
   parent    : Association to Orders;
   book      : Association to Books;
   amount    : Integer;
   netAmount : Decimal(9,2);
+}
+
+entity Webhooks : managed {
+  key url: String;
 }

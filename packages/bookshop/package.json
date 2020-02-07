@@ -5,7 +5,9 @@
   "license": "SAP SAMPLE CODE LICENSE",
   "dependencies": {
     "@sap/cds": "latest",
-    "express": "*"
+    "express": "*",
+    "node-fetch": "^2.6.0",
+    "sqlite3": "^4.1.1"
   },
   "scripts": {
     "start": "cds run --in-memory?",
